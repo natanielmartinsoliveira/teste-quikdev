@@ -15,9 +15,9 @@ export class CommentsService {
 
     async findAll(postId: any): Promise<Comment[]> {
         if(postId){
-            return this.commentModel.find({ postId : postId }).exec();
+            return this.commentModel.find({ postId : postId }).populate('user').exec();
         }
-        return this.commentModel.find().exec();
+        return this.commentModel.find().populate('user').exec();
     }
 
     async findOne(id: string): Promise<Comment> {
