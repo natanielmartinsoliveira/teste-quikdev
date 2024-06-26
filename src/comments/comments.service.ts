@@ -4,12 +4,14 @@ import mongoose, { Model } from 'mongoose';
 import { Comment } from './comment.schema';
 import { User } from 'src/users/user.schema';
 import { Post } from 'src/posts/post.schema';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class CommentsService {
     constructor(@InjectModel(Comment.name) private commentModel: Model<Comment>,
                 @InjectModel(User.name) private userModel: Model<User>,
-                @InjectModel(Post.name) private postModel: Model<Post>) {}
+                @InjectModel(Post.name) private postModel: Model<Post>, 
+                private emailService: EmailService) {}
 
     async findAll(postId: any): Promise<Comment[]> {
         if(postId){
@@ -30,6 +32,14 @@ export class CommentsService {
         comment.userId = await this.userModel.findOne({_id: userId});
         comment.description = text;
         const newComment = new this.commentModel(comment);
+        const emailAuthor = await this.userModel.findOne({_id: post.userId});
+        // Enviar email para o dono do post
+        await this.emailService.sendMail(
+            emailAuthor.email,
+            'Novo comentário no seu post',
+            `Você recebeu um novo comentário no seu post: ${text}`,
+        );
+
         return newComment.save();
     }
 

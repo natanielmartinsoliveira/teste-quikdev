@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { PostsModule } from './posts/posts.module';
 import { UsersModule } from './users/users.module';
 import { LikesModule } from './likes/likes.module';
+import { EmailModule } from './email/email.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { CommentsModule } from './comments/comments.module';
 import { UploadService } from './upload/upload.service';
@@ -22,6 +23,7 @@ import { join } from 'path';
     LikesModule,
     CommentsModule,
     UploadModule,
+    EmailModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads/'

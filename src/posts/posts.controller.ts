@@ -37,7 +37,6 @@ export class PostsController {
     })
   }))
   create(@Body() post: any, @Req() request: RequestWithUser, @UploadedFile() file: Express.Multer.File) {
-    console.log('oi:',post);
     return this.postsService.create(post, request.user, file);
   }
 

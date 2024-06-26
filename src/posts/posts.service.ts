@@ -29,7 +29,6 @@ export class PostsService {
     const fileData : any = file ? file.path : null;
     post.userId = await this.userModel.findOne({_id : user._id});
     post.image = fileData;
-    console.log(post);
     const newPost = new this.postModel(post);
     return newPost.save();
   }
