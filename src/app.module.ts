@@ -10,6 +10,7 @@ import { EmailModule } from './email/email.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { CommentsModule } from './comments/comments.module';
 import { UploadService } from './upload/upload.service';
+import { ConfigModule } from '@nestjs/config';
 import { UploadModule } from './upload/upload.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
@@ -24,6 +25,9 @@ import { join } from 'path';
     CommentsModule,
     UploadModule,
     EmailModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploads'),
       serveRoot: '/uploads/'

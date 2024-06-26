@@ -34,12 +34,14 @@ export class CommentsService {
         const newComment = new this.commentModel(comment);
         const emailAuthor = await this.userModel.findOne({_id: post.userId});
         // Enviar email para o dono do post
-        await this.emailService.sendMail(
-            emailAuthor.email,
-            'Novo comentário no seu post',
-            `Você recebeu um novo comentário no seu post: ${text}`,
-        );
-
+        if(emailAuthor?.email){
+            await this.emailService.sendMail(
+                emailAuthor?.email,
+                'Novo comentário no seu post',
+                `Você recebeu um novo comentário no seu post: ${text}`,
+            );
+        }
+    
         return newComment.save();
     }
 
@@ -72,13 +74,6 @@ export class CommentsService {
         comment.deleted = true;
         return comment.save();
 
-        //return this.commentModel.findByIdAndUpdate(id, { deleted: true }).exec();
-        //return this.commentModel.findByIdAndDelete(id).exec();
-    }
-
-    async sendEmailToPostUser(postUserId: string, commentContent: string): Promise<void> {
-        // Lógica para enviar o e-mail ao usuário da postagem
-        console.log(`Sending email to user with id ${postUserId}: New comment - ${commentContent}`);
     }
 
 }
