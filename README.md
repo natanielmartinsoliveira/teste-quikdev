@@ -10,7 +10,7 @@ cd your-repo/backend.
 $ npm install
 ```
 
-## 4. Inicialização
+## Inicialização
 
 Inicie o servidor:
 Se estiver usando npm:
