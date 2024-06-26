@@ -3,6 +3,16 @@
 
 git clone https://github.com/natanielmartinsoliveira/teste-quikdev-back.git
 
+## Crie o arquivo .env com as informaçoes abaixo:
+
+```bash
+EMAIL_HOST=sandbox.smtp.mailtrap.io
+EMAIL_PORT=2525
+EMAIL_USER=your_user_here
+EMAIL_PASS=your_pass_here
+EMAIL_FROM=no-reply@example.com
+
+```
 ## Instale as dependências:
 
 ```bash
