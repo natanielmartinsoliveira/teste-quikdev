@@ -1,8 +1,7 @@
 
 ## Clone o repositório
 
-[Nest](https://github.com/yourusername/your-repo.git) git clone https://github.com/yourusername/your-repo.git
-cd your-repo/backend.
+git clone https://github.com/natanielmartinsoliveira/teste-quikdev-back.git
 
 ## Instale as dependências:
 
